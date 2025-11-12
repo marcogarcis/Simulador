@@ -8,56 +8,66 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="dashboard-page"> 
-    <div class="dashboard-wrapper">
-        <div class="dashboard-container">
-            
-            <a href="dashboard.html" class="btn-back"><i class="material-icons">arrow_back</i> Regresar al Inicio</a>
-
-            <h1 class="section-title">Convocatorias 2025</h1>
-            <p class="slogan-text" style="margin-bottom: 20px;">Consulta los documentos oficiales de ingreso a la Universidad Naval y la UDEFA.</p>
-
-            <div class="tool-section card" style="padding: 20px; margin-bottom: 40px;">
-                <h2 class="institution-title sedena-color" style="margin-top: 0; padding-top: 0;">
-                    Secretaría de la Defensa Nacional (SEDENA)
-                </h2>
-                <p class="tool-description">
-                    Utiliza el botón para ir a la sección oficial de convocatorias 2025 para el Sistema Educativo Militar.
-                </p>
-                <a href="https://www.gob.mx/defensa/articulos/sistema-educativo-militar-31103?idiom=es" target="_blank" class="btn-primary" style="background-color: #40513B;">
-                    <i class="material-icons" style="margin-right: 5px;">open_in_new</i> Ver Convocatoria UDEFA
-                </a>
-                <p class="data-hint" style="margin-top: 15px;">*Debido a restricciones de seguridad, el sitio de SEDENA no permite la visualización directa del PDF en esta página. Abrirá una nueva ventana.</p>
-            </div>
-
-
-            <div class="tool-section card" style="padding: 20px;">
-                <h2 class="institution-title semar-color" style="margin-top: 0; padding-top: 0;">
-                    Secretaría de Marina (SEMAR) - Universidad Naval
-                </h2>
-                <p class="tool-description">
-                    Utiliza el botón para ir a la sección oficial de convocatorias 2025 para el Ingreso a Establecimientos Navales.
-                </p>
-                <a href="https://www.gob.mx/universidadnaval/articulos/convocatorias-2025-para-ingreso-a-los-establecimientos-educativos-navales" target="_blank" class="btn-primary" style="background-color: var(--color-principal);">
-                    <i class="material-icons" style="margin-right: 5px;">open_in_new</i> Ver Convocatoria UNINAV
-                </a>
-                <p class="data-hint" style="margin-top: 15px;">*Debido a restricciones de seguridad, el sitio de SEMAR no permite la visualización directa del PDF en esta página. Abrirá una nueva ventana.</p>
-            </div>
-            
-        </div>
-    </div>
-    
-    <nav class="nav-bar">
-        <a href="dashboard.html" class="nav-link">
-            <span class="material-icons">home</span>
-            Inicio
-        </a>
-        <a href="profile.html" class="nav-link">
-            <span class="material-icons">person</span>
-            Perfil
-        </a>
+<body onload="navigateToHome()">
+    <nav class="sidebar">
+        <h1 class="logo-text">Aspirante Soy MX</h1>
+        <ul class="nav-links">
+            <li><a href="dashboard.html"><i class="material-icons">dashboard</i> Dashboard</a></li>
+            <li><a href="simulador.html"><i class="material-icons">quiz</i> Simulador EXANI-II</a></li>
+            <li><a href="convocatorias.html" class="active"><i class="material-icons">event</i> Convocatorias</a></li>
+            <li><a href="herramientas.html"><i class="material-icons">build</i> Herramientas</a></li>
+            <li><a href="profile.html"><i class="material-icons">person</i> Mi Perfil</a></li>
+        </ul>
+        <button id="logout-btn-nav" class="btn-logout"><i class="material-icons">exit_to_app</i> Cerrar Sesión</button>
     </nav>
 
-    <script src="script.js"></script> 
+    <div class="content">
+        <header class="header">
+            <h2>Fechas y Requisitos de Convocatorias</h2>
+        </header>
+
+        <main class="convocatorias-content">
+            
+            <section class="card convocatoria-card sedena-card">
+                <h3><i class="material-icons">military_tech</i> SEDENA (Heroico Colegio Militar y Escuelas)</h3>
+                <div class="convocatoria-details">
+                    <p><strong>Estado:</strong> <span class="status-chip ideal">Vigente (Fase final de selección)</span></p>
+                    <p><strong>Fechas Estimadas:</strong> Registro en línea: Enero - Marzo 2026. Examen Cultural: Mayo 2026.</p>
+                    <p><strong>Requisitos Clave:</strong> Edad mínima: 18 años. Estatura mínima: 1.63m (H) / 1.58m (M). Índice de Masa Corporal (IMC): 18.5 a 27.9.</p>
+                    <a href="https://www.gob.mx/sedena" target="_blank" class="btn-secondary-link">Ver sitio oficial</a>
+                </div>
+            </section>
+
+            <section class="card convocatoria-card semar-card">
+                <h3><i class="material-icons">anchor</i> SEMAR (Heroica Escuela Naval Militar y Escuelas)</h3>
+                <div class="convocatoria-details">
+                    <p><strong>Estado:</strong> <span class="status-chip low">Próximamente (Preparación)</span></p>
+                    <p><strong>Fechas Estimadas:</strong> Registro en línea: Enero - Marzo 2026. Examen Cultural: Abril 2026.</p>
+                    <p><strong>Requisitos Clave:</strong> Edad: Menor de 21 años al 31 de diciembre. Estatura mínima: 1.63m (H) / 1.55m (M). IMC: 18.5 a 27.9.</p>
+                    <a href="https://www.gob.mx/semar" target="_blank" class="btn-secondary-link">Ver sitio oficial</a>
+                </div>
+            </section>
+
+            <section class="card convocatoria-card ceneval-card">
+                <h3><i class="material-icons">edit_square</i> Examen EXANI-II (CENEVAL)</h3>
+                <div class="convocatoria-details">
+                    <p><strong>Estado:</strong> <span class="status-chip info">Aplicación Continua</span></p>
+                    <p><strong>Fechas Estimadas:</strong> Depende de la institución a la que apliques. Generalmente, Febrero a Mayo para la primera vuelta.</p>
+                    <p><strong>Módulos Aplicados:</strong> Comprensión Lectora, Redacción Indirecta, Pensamiento Matemático, Módulos Específicos (como los de nuestro simulador).</p>
+                    <a href="https://www.ceneval.edu.mx/" target="_blank" class="btn-secondary-link">Ver sitio CENEVAL</a>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Agrega el evento de cerrar sesión al botón de la barra lateral
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoutNavBtn = document.getElementById('logout-btn-nav');
+            if (logoutNavBtn && window.logout) {
+                logoutNavBtn.addEventListener('click', window.logout);
+            }
+        });
+    </script>
 </body>
 </html>
