@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil | Aspirante Soy MX</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="dashboard-page"> 
+    <div class="dashboard-wrapper">
+        
+        <div class="dashboard-container">
+            
+            <h1 class="section-title" style="font-size: 1.8em; margin-bottom: 30px;">Mi Perfil</h1>
+            
+            <!-- CLAVE: Contenedor donde JS inyectará los datos -->
+            <div id="profile-data">
+                <p style="text-align: center; color: #666;">Cargando datos del usuario...</p>
+            </div>
+
+            <!-- Botón de Cerrar Sesión (ÚNICO lugar) -->
+            <button id="logout-btn" class="btn-primary logout-btn">Cerrar Sesión</button>
+
+        </div>
+    </div>
+    
+    <!-- CLAVE: Menú de Navegación Inferior -->
+    <nav class="nav-bar">
+        <a href="dashboard.html" class="nav-link">
+            <span class="material-icons">home</span>
+            Inicio
+        </a>
+        <a href="profile.html" class="nav-link active">
+            <span class="material-icons">person</span>
+            Perfil
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
