@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // Funciones Comunes y Auxiliares (CORREGIDAS)
+    // Funciones Comunes y Auxiliares 
     // ----------------------------------------------------
 
     function checkLoginStatus() { return localStorage.getItem('aspiranteSoyMX_sesion_activa') !== null; }
@@ -58,32 +58,28 @@ document.addEventListener('DOMContentLoaded', () => {
     function getUsuarios() { const usuariosJSON = localStorage.getItem('aspiranteSoyMX_usuarios'); return usuariosJSON ? JSON.parse(usuariosJSON) : []; }
     function formatBold(text) { return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); }
 
-    // Función global de navegación y seguridad (window.navigateToHome se mantiene igual)
+    // Función global de navegación y seguridad (NAVEGACIÓN CORREGIDA)
     window.navigateToHome = function() {
         const isLoggedIn = checkLoginStatus();
         const currentPage = window.location.pathname.split("/").pop(); 
 
-        // Lista de páginas que requieren login
         const loggedInPages = ['dashboard.html', 'simulador.html', 'convocatorias.html', 'herramientas.html', 'profile.html'];
 
         if (isLoggedIn) {
-            // Si el usuario está logueado y está en una página de login/registro, lo enviamos al dashboard
             if (currentPage === 'index.html' || currentPage === 'registro.html') {
                  window.location.href = 'dashboard.html';
             }
         } else {
-            // Si el usuario no está logueado y está en una página que requiere login, lo enviamos al index
             if (loggedInPages.includes(currentPage)) {
                  window.location.href = 'index.html';
             }
         }
     }
 
-    // Función que se ejecuta al cargar la página para forzar el login si es necesario. (CORREGIDA)
+    // Función que se ejecuta al cargar la página para forzar el login (ACCESO CORREGIDO)
     function requireLogin() {
         const currentPage = window.location.pathname.split("/").pop(); 
         
-        // PÁGINAS QUE REQUIEREN LOGIN:
         const pagesRequiringLogin = ['dashboard.html', 'simulador.html', 'convocatorias.html', 'herramientas.html', 'profile.html'];
 
         if (pagesRequiringLogin.includes(currentPage) && !checkLoginStatus()) {
@@ -394,4 +390,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function renderResults(correct, wrong, percentage, unanswered, durationSeg) {
-        document.getElementById(
+        document.getElementById('simulator-interface').style.display = 'none';
+        document.getElementById('results-screen').style.display = 'block';
+
+        const durationMin = Math.floor(durationSeg / 60);
+        const durationSec = durationSeg % 60;
+        const durationFormatted = `${durationMin < 10 ? '0' : ''}${durationMin}:${durationSec < 10 ? '0' : ''}${durati
