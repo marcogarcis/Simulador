@@ -3,92 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro | Aspirante Soy MX</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Prepárate - Registro</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de Material Icons para iconos -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        /* Estilos de fuente principal y fondo azul */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1e3a8a; /* Azul oscuro de Tailwind (blue-800) */
+        }
+    </style>
 </head>
-<body class="login-page" onload="navigateToHome()">
-    <div class="login-container">
-        <div class="login-card registration-card">
-            <h1 class="logo-text">Aspirante Soy MX</h1>
-            <h2>Crear Cuenta</h2>
-            <form id="registro-form" class="registration-form">
-                <div class="form-group">
-                    <label for="nombre" class="form-label">Nombre Completo</label>
-                    <input type="text" id="nombre" name="nombre" required>
-                </div>
-                <div class="form-group">
-                    <label for="residencia" class="form-label">Estado de Residencia</label>
-                    <select id="residencia" name="residencia" required>
-                        <option value="">Selecciona tu Estado</option>
-                        <option value="CDMX">Ciudad de México</option>
-                        <option value="Jalisco">Jalisco</option>
-                        <option value="NL">Nuevo León</option>
-                        <option value="EdoMex">Estado de México</option>
-                        <option value="Otro">Otro estado...</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Género</label>
-                    <div class="radio-group">
-                        <input type="radio" id="genero_h" name="genero" value="H" required>
-                        <label for="genero_h">Hombre</label>
-                        <input type="radio" id="genero_m" name="genero" value="M">
-                        <label for="genero_m">Mujer</label>
-                    </div>
-                </div>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="w-full max-w-lg bg-white rounded-xl shadow-2xl p-8 transform transition duration-500">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-extrabold text-blue-800 mb-2">Crear Cuenta</h1>
+            <p class="text-gray-500">Completa tus datos para empezar a estudiar</p>
+        </div>
 
-                <div class="form-group">
-                    <label class="form-label">Institución de Interés (Selecciona al menos una)</label>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="inst_sedena" name="institucion" value="SEDENA" onclick="toggleCarreras()">
-                        <label for="inst_sedena">SEDENA</label>
-                        <input type="checkbox" id="inst_semar" name="institucion" value="SEMAR" onclick="toggleCarreras()">
-                        <label for="inst_semar">SEMAR</label>
-                    </div>
+        <form id="register-form" onsubmit="event.preventDefault(); registerUser();">
+            
+            <!-- Nombre(s) y Apellido(s) -->
+            <div class="flex space-x-4 mb-4">
+                <div class="w-1/2">
+                    <label for="register-nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre(s)</label>
+                    <input type="text" id="register-nombre" placeholder="Tu nombre" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
                 </div>
+                <div class="w-1/2">
+                    <label for="register-apellidos" class="block text-sm font-medium text-gray-700 mb-1">Apellido(s)</label>
+                    <input type="text" id="register-apellidos" placeholder="Tus apellidos" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                </div>
+            </div>
 
-                <div id="carreras-container" style="display: none;">
-                    <div id="carreras-sedena" class="form-group hidden-select">
-                        <label for="carrera_sedena" class="form-label">Carrera de interés (SEDENA)</label>
-                        <select id="carrera_sedena" name="carrera_sedena">
-                            <option value="">Selecciona una carrera</option>
-                            <option value="Heroico Colegio Militar (HCM)">Heroico Colegio Militar (HCM)</option>
-                            <option value="Escuela Militar de Medicina">Escuela Militar de Medicina</option>
-                            <option value="Escuela Militar de Odontología">Escuela Militar de Odontología</option>
-                        </select>
-                    </div>
-                    <div id="carreras-semar" class="form-group hidden-select">
-                        <label for="carrera_semar" class="form-label">Carrera de interés (SEMAR)</label>
-                        <select id="carrera_semar" name="carrera_semar">
-                            <option value="">Selecciona una carrera</option>
-                            <option value="Heroica Escuela Naval Militar (HENM)">Heroica Escuela Naval Militar (HENM)</option>
-                            <option value="Escuela Naval de Ingeniería">Escuela Naval de Ingeniería</option>
-                            <option value="Escuela Naval de Enfermería">Escuela Naval de Enfermería</option>
-                        </select>
-                    </div>
-                </div>
+            <!-- Email -->
+            <div class="mb-4">
+                <label for="register-email" class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
+                <input type="email" id="register-email" placeholder="tu.correo@ejemplo.com" required 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+            </div>
 
-                <div class="form-group">
-                    <label for="reg_correo" class="form-label">Correo Electrónico</label>
-                    <input type="email" id="reg_correo" name="correo" placeholder="ejemplo@correo.com" required>
+            <!-- Contraseñas -->
+            <div class="flex space-x-4 mb-4">
+                <div class="w-1/2">
+                    <label for="register-password" class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+                    <input type="password" id="register-password" placeholder="••••••••" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
                 </div>
-                <div class="form-group">
-                    <label for="reg_contrasena" class="form-label">Contraseña (Mín. 6 caracteres)</label>
-                    <div class="password-container">
-                        <input type="password" id="reg_contrasena" name="contrasena" minlength="6" required>
-                        <span class="material-icons toggle-password" onclick="togglePasswordVisibility('reg_contrasena', this)">visibility_off</span>
-                    </div>
+                <div class="w-1/2">
+                    <label for="register-confirm-password" class="block text-sm font-medium text-gray-700 mb-1">Confirmar Contraseña</label>
+                    <input type="password" id="register-confirm-password" placeholder="••••••••" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
                 </div>
-                <button type="submit" class="btn-primary">Registrarme</button>
-            </form>
-            <p class="switch-link">
-                ¿Ya tienes cuenta? <a href="index.html">Inicia Sesión aquí.</a>
+            </div>
+
+            <!-- Estado de Residencia (32 Estados) -->
+            <div class="mb-4">
+                <label for="register-estado" class="block text-sm font-medium text-gray-700 mb-1">Estado de Residencia</label>
+                <select id="register-estado" required 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                    <option value="" disabled selected>Selecciona tu estado</option>
+                    <!-- Opciones cargadas por script.js -->
+                </select>
+            </div>
+
+            <!-- Institución (SEDENA/SEMAR) -->
+            <div class="mb-4">
+                <label for="register-institucion" class="block text-sm font-medium text-gray-700 mb-1">Institución de Interés</label>
+                <select id="register-institucion" required 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                    <option value="" disabled selected>Selecciona una institución</option>
+                    <option value="SEDENA">SEDENA (Ejército y Fuerza Aérea)</option>
+                    <option value="SEMAR">SEMAR (Marina Armada de México)</option>
+                </select>
+            </div>
+
+            <!-- Carrera de Interés (Depende de Institución) -->
+            <div class="mb-6">
+                <label for="register-carrera" class="block text-sm font-medium text-gray-700 mb-1">Carrera de Interés</label>
+                <select id="register-carrera" required disabled
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                    <option value="" disabled selected>Selecciona tu carrera de interés</option>
+                    <!-- Opciones cargadas por script.js al seleccionar institución -->
+                </select>
+            </div>
+            
+            <p id="register-error" class="text-red-500 text-sm mb-4 text-center"></p>
+
+            <button type="submit" 
+                    class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-200 transform hover:scale-[1.01]">
+                Registrarme
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <p class="text-sm text-gray-600">¿Ya tienes una cuenta? 
+                <a href="index.html" class="text-blue-600 hover:text-blue-800 font-medium transition duration-150">
+                    Iniciar Sesión
+                </a>
             </p>
         </div>
     </div>
+
+    <!-- Carga de script al final del body -->
     <script src="script.js"></script>
 </body>
 </html>
