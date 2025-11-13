@@ -3,35 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Aspirante Soy MX</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Prepárate - Iniciar Sesión</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de Material Icons para iconos -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        /* Estilos de fuente principal y fondo azul */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1e3a8a; /* Azul oscuro de Tailwind (blue-800) */
+        }
+    </style>
 </head>
-<body class="login-page" onload="navigateToHome()">
-    <div class="login-container">
-        <div class="login-card">
-            <h1 class="logo-text">Aspirante Soy MX</h1>
-            <h2>Inicio de Sesión</h2>
-            <form id="login-form" class="login-form">
-                <div class="form-group">
-                    <label for="correo" class="form-label">Correo Electrónico</label>
-                    <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="contrasena" class="form-label">Contraseña</label>
-                    <div class="password-container">
-                        <input type="password" id="contrasena" name="contrasena" required>
-                        <span class="material-icons toggle-password" onclick="togglePasswordVisibility('contrasena', this)">visibility_off</span>
-                    </div>
-                </div>
-                <button type="submit" class="btn-primary">Entrar</button> 
-            </form>
-            <p class="switch-link">
-                ¿Aún no tienes cuenta? <a href="registro.html">Regístrate aquí.</a>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="w-full max-w-md bg-white rounded-xl shadow-2xl p-8 transform transition duration-500 hover:shadow-3xl">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-extrabold text-blue-800 mb-2">Prepárate</h1>
+            <p class="text-gray-500">Inicia sesión para continuar</p>
+        </div>
+
+        <form id="login-form" onsubmit="event.preventDefault(); login();">
+            <div class="mb-5">
+                <label for="login-email" class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
+                <input type="email" id="login-email" placeholder="tu.correo@ejemplo.com" required 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+            </div>
+            <div class="mb-6">
+                <label for="login-password" class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+                <input type="password" id="login-password" placeholder="••••••••" required 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+            </div>
+            
+            <p id="login-error" class="text-red-500 text-sm mb-4 text-center"></p>
+
+            <button type="submit" 
+                    class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-200 transform hover:scale-[1.01]">
+                Entrar
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <p class="text-sm text-gray-600">¿Aún no tienes una cuenta? 
+                <a href="registro.html" class="text-blue-600 hover:text-blue-800 font-medium transition duration-150">
+                    Regístrate aquí
+                </a>
             </p>
         </div>
     </div>
+
+    <!-- Carga de script al final del body -->
     <script src="script.js"></script>
 </body>
 </html>
