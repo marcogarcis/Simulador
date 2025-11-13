@@ -3,100 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Aspirante Soy MX</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Prepárate - Dashboard</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de Material Icons para iconos -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        /* Estilos de fuente principal */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb; /* Fondo claro para el cuerpo */
+            padding-bottom: 60px; /* Espacio para el menú inferior fijo */
+        }
+        /* Estilo para el menú inferior fijo */
+        .bottom-nav {
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
-<body onload="navigateToHome()">
-    <nav class="sidebar">
-        <h1 class="logo-text">Aspirante Soy MX</h1>
-        <ul class="nav-links">
-            <li><a href="dashboard.html" class="active"><i class="material-icons">dashboard</i> Dashboard</a></li>
-            <li><a href="simulador.html"><i class="material-icons">quiz</i> Simulador EXANI-II</a></li>
-            <li><a href="convocatorias.html"><i class="material-icons">event</i> Convocatorias</a></li>
-            <li><a href="herramientas.html"><i class="material-icons">build</i> Herramientas</a></li>
-            <li><a href="profile.html"><i class="material-icons">person</i> Mi Perfil</a></li>
-        </ul>
-        <button id="logout-btn-nav" class="btn-logout"><i class="material-icons">exit_to_app</i> Cerrar Sesión</button>
+<body>
+    <!-- Encabezado Fijo (Header) - Fondo Azul -->
+    <header class="sticky top-0 z-10 bg-blue-700 text-white shadow-lg p-4">
+        <div class="flex justify-between items-center max-w-4xl mx-auto">
+            <h1 class="text-xl font-bold">Prepárate</h1>
+            <p id="welcome-message" class="text-lg font-medium">Hola, Usuario</p>
+        </div>
+    </header>
+
+    <!-- Contenido Principal del Dashboard -->
+    <main class="p-4 max-w-4xl mx-auto mb-20">
+        
+        <!-- Tarjeta de Progreso General -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Resumen de Progreso</h2>
+            <div class="flex items-center space-x-4">
+                <div class="w-full">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-sm font-medium text-blue-700">Progreso Total</span>
+                        <span id="user-progress" class="text-sm font-semibold text-blue-700">0% completado</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Acciones Principales (Simulador) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+            
+            <!-- Tarjeta 1: Simulador de Examen -->
+            <a href="simulador.html" class="block">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition duration-300 transform hover:scale-[1.02] border-t-4 border-blue-500">
+                    <span class="material-icons-outlined text-5xl text-blue-500 mb-2">school</span>
+                    <h3 class="text-lg font-semibold text-gray-800">Simulador</h3>
+                    <p class="text-sm text-gray-500">Evalúa tu conocimiento</p>
+                </div>
+            </a>
+            
+            <!-- Tarjeta 2: Convocatorias (Corregida) -->
+            <a href="#" class="block">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition duration-300 transform hover:scale-[1.02] border-t-4 border-yellow-500">
+                    <span class="material-icons-outlined text-5xl text-yellow-500 mb-2">description</span>
+                    <h3 class="text-lg font-semibold text-gray-800">Convocatorias</h3>
+                    <p class="text-sm text-gray-500">Ejército y Marina</p>
+                </div>
+            </a>
+
+            <!-- Tarjeta 3: Herramientas (Corregida) -->
+            <a href="#" class="block">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition duration-300 transform hover:scale-[1.02] border-t-4 border-green-500">
+                    <span class="material-icons-outlined text-5xl text-green-500 mb-2">construction</span>
+                    <h3 class="text-lg font-semibold text-gray-800">Herramientas</h3>
+                    <p class="text-sm text-gray-500">Calculadoras y utilidades</p>
+                </div>
+            </a>
+        </div>
+        
+        <!-- Resumen de Perfil (Mostrado al final del dashboard) -->
+        <div id="progress-summary-card" class="bg-white rounded-xl shadow-lg p-6 mt-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+                <span class="material-icons-outlined text-2xl mr-2 text-blue-500">person_outline</span>
+                Resumen de Perfil
+            </h2>
+            <div class="grid grid-cols-2 gap-4 text-sm text-gray-600">
+                <div>
+                    <p class="font-medium text-gray-700">Nombre:</p>
+                    <p id="summary-nombre" class="text-blue-600 font-bold">Cargando...</p>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-700">Estado de Residencia:</p>
+                    <p id="summary-estado">Cargando...</p>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-700">Institución de Interés:</p>
+                    <p id="summary-institucion">Cargando...</p>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-700">Carrera de Interés:</p>
+                    <p id="summary-carrera">Cargando...</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Menú de Navegación Inferior (Corregido) -->
+    <nav class="bottom-nav fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-20">
+        <div class="flex justify-around max-w-md mx-auto h-14">
+            <!-- Botón de Inicio (Activo) -->
+            <a href="dashboard.html" class="flex flex-col items-center justify-center text-blue-600 w-1/2">
+                <span class="material-icons-outlined text-2xl">home</span>
+                <span class="text-xs font-medium">Inicio</span>
+            </a>
+            <!-- Botón de Perfil -->
+            <a href="profile.html" class="flex flex-col items-center justify-center text-gray-500 hover:text-blue-600 transition w-1/2">
+                <span class="material-icons-outlined text-2xl">person</span>
+                <span class="text-xs font-medium">Perfil</span>
+            </a>
+        </div>
     </nav>
 
-    <div class="content">
-        <header class="header">
-            <h2 id="welcome-message">¡Bienvenido(a)!</h2>
-        </header>
-
-        <main class="dashboard-grid">
-            
-            <section class="card quick-access">
-                <h3>Acceso Rápido</h3>
-                <div class="quick-links">
-                    <a href="simulador.html" class="link-card simulador">
-                        <i class="material-icons">timer</i> Iniciar Simulador
-                    </a>
-                    <a href="herramientas.html" class="link-card herramientas">
-                        <i class="material-icons">calculate</i> Calcular IMC
-                    </a>
-                    <a href="convocatorias.html" class="link-card convocatorias">
-                        <i class="material-icons">calendar_today</i> Próximas Fechas
-                    </a>
-                </div>
-            </section>
-
-            <section class="card stats-summary">
-                <h3>Resumen de Progreso</h3>
-                <div id="stats-content" class="stats-content">
-                    <div class="stat-item">
-                        <i class="material-icons ideal">done_all</i>
-                        <span class="stat-value" id="total-aciertos">0</span>
-                        <span class="stat-label">Aciertos Totales</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="material-icons high">military_tech</i>
-                        <span class="stat-value" id="mejor-porcentaje">0%</span>
-                        <span class="stat-label">Mejor Porcentaje</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="material-icons low">history</i>
-                        <span class="stat-value" id="total-intentos">0</span>
-                        <span class="stat-label">Simuladores Realizados</span>
-                    </div>
-                </div>
-                <p class="data-hint">Estadísticas basadas en tu historial en el Simulador EXANI-II.</p>
-            </section>
-
-            <section class="card announcements">
-                <h3>📢 Avisos Importantes</h3>
-                <ul class="announcement-list">
-                    <li><i class="material-icons">star</i> **NUEVO:** Simulador actualizado con preguntas de Historia y Geografía.</li>
-                    <li><i class="material-icons">access_time</i> Próxima convocatoria SEMAR (Nivel Licenciatura) inicia en **Enero 2026**.</li>
-                    <li><i class="material-icons">rule</i> Recuerda que el índice de masa corporal (IMC) debe estar entre 18.5 y 27.9.</li>
-                </ul>
-            </section>
-            
-            <section class="card history-chart">
-                <h3>Historial de Intentos</h3>
-                <div id="history-list" class="history-list">
-                    <p class="history-placeholder">Realiza tu primer simulador para ver tu historial aquí.</p>
-                </div>
-            </section>
-
-        </main>
-    </div>
-    
+    <!-- Carga de script al final del body -->
     <script src="script.js"></script>
-    <script>
-        // Lógica del Dashboard que llama a las funciones de script.js
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.renderDashboardStats) {
-                window.renderDashboardStats();
-            }
-            // Agrega el evento de cerrar sesión al botón de la barra lateral
-            const logoutNavBtn = document.getElementById('logout-btn-nav');
-            if (logoutNavBtn && window.logout) {
-                logoutNavBtn.addEventListener('click', window.logout);
-            }
-        });
-    </script>
 </body>
 </html>
